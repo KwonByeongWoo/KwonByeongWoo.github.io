@@ -1,110 +1,70 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>권병우 이력서</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-     .darkmode-button {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: var(--accent);
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 14px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-}
     :root {
-      --bg-light: #f5f5f5;
-      --bg-dark: #1e1e1e;
-      --text-light: #1e1e1e;
-      --text-dark: #f5f5f5;
-      --accent: #4fc3f7;
+      --bg-light: #ffffff;
+      --bg-dark: #1f1f1f;
+      --text-light: #1f1f1f;
+      --text-dark: #f0f0f0;
+      --accent: #6db33f; /* Spring green */
     }
-
-.darkmode-button:hover {
-  background-color: #0288d1;
-}
 
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      transition: background-color 0.3s, color 0.3s;
-      background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxODAxMDVfMTIg%2FMDAxNTE1MTQwOTU2MDY3.MToHfFXfMpfOQo8KZglIBRXUCRPhTizYGls1nrXEbrgg.kBY37VGvTl6N_a9gJXNUEfBzPc3dQlpLDnvOUBrGBxYg.JPEG.daegu_news%2F19794786.jpg&type=sc960_832');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      <button class="darkmode-button" onclick="toggleDarkMode()">다크모드</button>
-    }
-
-    body.light {
       background-color: var(--bg-light);
       color: var(--text-light);
+      transition: background-color 0.4s, color 0.4s;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Modern_data_visualization_chart.svg/1280px-Modern_data_visualization_chart.svg.png');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
-    body.dark {
+    body.dark-mode {
       background-color: var(--bg-dark);
       color: var(--text-dark);
+    }
+
+    .dark-mode .container {
+      background-color: rgba(30, 30, 30, 0.9);
     }
 
     .container {
       max-width: 800px;
       margin: auto;
-      background-color: rgba(255,255,255,0.9);
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 2rem;
       border-radius: 10px;
-      margin-top: 50px;
+      margin-top: 80px;
     }
 
-    body.dark .container {
-      background-color: rgba(30,30,30,0.9);
-    }
-
-    .toggle-switch {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-    }
-
-    .toggle-switch input[type="checkbox"] {
-      display: none;
-    }
-
-    .toggle-switch label {
+    /* 다크모드 버튼 */
+    .dark-toggle-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 6px;
       cursor: pointer;
-      background-color: #ccc;
-      border-radius: 20px;
-      display: inline-block;
-      width: 50px;
-      height: 25px;
-      position: relative;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    .toggle-switch label::after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 20px;
-      height: 20px;
-      background: white;
-      border-radius: 50%;
-      transition: 0.3s;
-    }
-
-    .toggle-switch input[type="checkbox"]:checked + label {
+    .dark-toggle-btn:hover {
       background-color: var(--accent);
-    }
-
-    .toggle-switch input[type="checkbox"]:checked + label::after {
-      transform: translateX(25px);
+      color: white;
     }
 
     h1 {
@@ -128,18 +88,19 @@
     .email {
       font-weight: bold;
     }
-
   </style>
 </head>
-<body class="light">
-  <div class="toggle-switch">
-    <input type="checkbox" id="darkModeToggle" />
-    <label for="darkModeToggle"></label>
-  </div>
+<body>
+  <!-- 다크모드 토글 버튼 -->
+  <button class="dark-toggle-btn" onclick="toggleDarkMode()">다크모드</button>
 
   <div class="container">
     <h1>권병우</h1>
-  <p></p><junior data analyst | <span class="email"><a href="mailto:kbw0178@naver.com"></a></span></p>
+    <p>주니어 데이터 분석가 | 
+      <span class="email">
+        <a href="mailto:youremail@example.com">youremail@example.com</a>
+      </span>
+    </p>
 
     <div class="section">
       <h2>📊 기술 스택</h2>
@@ -163,18 +124,9 @@
   </div>
 
   <script>
-    const toggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    toggle.addEventListener('change', () => {
-      if (toggle.checked) {
-        body.classList.remove('light');
-        body.classList.add('dark');
-      } else {
-        body.classList.remove('dark');
-        body.classList.add('light');
-      }
-    });
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
   </script>
 </body>
 </html>
