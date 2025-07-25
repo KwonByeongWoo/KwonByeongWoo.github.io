@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>권병우 이력서</title>
+  <title>주니어 데이터 분석가 이력서</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -15,7 +15,7 @@
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
       background-color: var(--bg-light);
       color: var(--text-light);
       transition: background-color 0.4s, color 0.4s;
@@ -60,11 +60,18 @@
       background-color: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(5px);
       transition: background-color 0.3s, color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .dark-toggle-btn:hover {
       background-color: var(--accent);
       color: white;
+    }
+
+    .icon {
+      font-size: 16px;
     }
 
     h1 {
@@ -92,10 +99,12 @@
 </head>
 <body>
   <!-- 다크모드 토글 버튼 -->
-  <button class="dark-toggle-btn" onclick="toggleDarkMode()">다크모드</button>
+  <button class="dark-toggle-btn" onclick="toggleDarkMode()">
+    <span class="icon" id="modeIcon">🌙</span> 다크모드
+  </button>
 
   <div class="container">
-    <h1>권병우</h1>
+    <h1>홍길동</h1>
     <p>주니어 데이터 분석가 | 
       <span class="email">
         <a href="mailto:youremail@example.com">youremail@example.com</a>
@@ -125,7 +134,16 @@
 
   <script>
     function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
+      const body = document.body;
+      const icon = document.getElementById('modeIcon');
+      body.classList.toggle('dark-mode');
+
+      // 아이콘 업데이트
+      if (body.classList.contains('dark-mode')) {
+        icon.textContent = '☀️'; // 라이트모드 아이콘
+      } else {
+        icon.textContent = '🌙'; // 다크모드 아이콘
+      }
     }
   </script>
 </body>
